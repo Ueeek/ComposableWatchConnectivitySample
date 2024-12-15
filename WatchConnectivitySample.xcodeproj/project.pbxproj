@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0653A1FE2D0E9B3800779705 /* WatchConnectivitySample Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 0653A1FD2D0E9B3800779705 /* WatchConnectivitySample Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0653A2382D0E9C2700779705 /* ComposableWatchConnectivity in Frameworks */ = {isa = PBXBuildFile; productRef = 0653A2372D0E9C2700779705 /* ComposableWatchConnectivity */; };
+		0653A23B2D0E9C3A00779705 /* ComposableWatchConnectivity in Frameworks */ = {isa = PBXBuildFile; productRef = 0653A23A2D0E9C3A00779705 /* ComposableWatchConnectivity */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0653A2382D0E9C2700779705 /* ComposableWatchConnectivity in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0653A23B2D0E9C3A00779705 /* ComposableWatchConnectivity in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +79,7 @@
 			children = (
 				0653A1D92D0E9B3700779705 /* WatchConnectivitySample */,
 				0653A2012D0E9B3800779705 /* WatchConnectivitySample Watch App */,
+				0653A2392D0E9C3A00779705 /* Frameworks */,
 				0653A1D82D0E9B3700779705 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +91,13 @@
 				0653A1FD2D0E9B3800779705 /* WatchConnectivitySample Watch App.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0653A2392D0E9C3A00779705 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +122,7 @@
 			);
 			name = WatchConnectivitySample;
 			packageProductDependencies = (
+				0653A2372D0E9C2700779705 /* ComposableWatchConnectivity */,
 			);
 			productName = WatchConnectivitySample;
 			productReference = 0653A1D72D0E9B3700779705 /* WatchConnectivitySample.app */;
@@ -132,6 +145,7 @@
 			);
 			name = "WatchConnectivitySample Watch App";
 			packageProductDependencies = (
+				0653A23A2D0E9C3A00779705 /* ComposableWatchConnectivity */,
 			);
 			productName = "WatchConnectivitySample Watch App";
 			productReference = 0653A1FD2D0E9B3800779705 /* WatchConnectivitySample Watch App.app */;
@@ -164,6 +178,9 @@
 			);
 			mainGroup = 0653A1CE2D0E9B3700779705;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0653A2362D0E9C2700779705 /* XCRemoteSwiftPackageReference "ComposableWatchConnectivity" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0653A1D82D0E9B3700779705 /* Products */;
 			projectDirPath = "";
@@ -489,6 +506,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0653A2362D0E9C2700779705 /* XCRemoteSwiftPackageReference "ComposableWatchConnectivity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Ueeek/ComposableWatchConnectivity";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0653A2372D0E9C2700779705 /* ComposableWatchConnectivity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0653A2362D0E9C2700779705 /* XCRemoteSwiftPackageReference "ComposableWatchConnectivity" */;
+			productName = ComposableWatchConnectivity;
+		};
+		0653A23A2D0E9C3A00779705 /* ComposableWatchConnectivity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0653A2362D0E9C2700779705 /* XCRemoteSwiftPackageReference "ComposableWatchConnectivity" */;
+			productName = ComposableWatchConnectivity;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0653A1CF2D0E9B3700779705 /* Project object */;
 }
