@@ -16,22 +16,28 @@ struct MainReducer {
     enum Action:  Sendable {
         case appearTask
         case sendCurrentDate
+        
+        // To receive the actions that emit from WCSessionDelegate via WatchConnectivityClient
         case watchConnectivity(WatchConnectivityClient.Action)
     }
     
+    // WatchConnectivityClient is defined as DependencyClient in the library.
     @Dependency(\.watchConnectivityClient) var watchClient
     
     var body: some Reducer<State, Action> {
         CombineReducers {
+            // Separate Reducer for easier understanding
             watchClientReducer
             Reduce { state, action in
                 switch action {
                     case .appearTask:
                         return .run { send in
+                            // Activate the session
                             await watchClient.activate()
+                            
+                            // Start subscribing
                             await withTaskGroup(of: Void.self) { group in
                                 group.addTask {
-                                    // WCSessionDelegateのmethodを購読し、actionとしてsendする。
                                     await withTaskCancellation(id: CancelID.watchConnectivity, cancelInFlight: true) {
                                         for await action in await watchClient.delegate() {
                                             await send(.watchConnectivity(action), animation: .default)
@@ -41,7 +47,7 @@ struct MainReducer {
                             }
                         }
                     case .sendCurrentDate:
-                        // WatchClientを使用して、dataを送る。
+                        // Send data via WatchClient
                         state.message = "send Data'"
                         return .run { _ in
                             if let data = try? JSONEncoder().encode(Date.now) {
@@ -60,12 +66,11 @@ struct MainReducer {
     var watchClientReducer: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                    // WatchとのSessionのStatus. `watchClient.activate()`の結果。
+                    // Result of establishing a session
                 case .watchConnectivity(.activationDidCompleteWith(let status)):
                     let activatedStatus = status == .activated ? "activated" :"not activated"
                     state.message = "session " + activatedStatus
                     return .none
-                    // `watchClient.sendMessage((key:val))`が失敗した時に呼ばれる。
                 case .watchConnectivity(.sendFail(let error)):
                     state.message = "sendFail with \(error.localizedDescription)"
                     return .none
@@ -94,6 +99,7 @@ struct MainView: View {
                 }
             )
         }
+        // When view is appeared, setup the WatchConnectivityClient
         .task { await store.send(.appearTask).finish() }
     }
 }
